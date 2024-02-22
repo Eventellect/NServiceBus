@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using MessageMutator;
 using Microsoft.Extensions.DependencyInjection;
@@ -9,9 +10,9 @@ using Pipeline;
 
 class MutateIncomingTransportMessageBehavior : IBehavior<IIncomingPhysicalMessageContext, IIncomingPhysicalMessageContext>
 {
-    public MutateIncomingTransportMessageBehavior(HashSet<IMutateIncomingTransportMessages> mutators)
+    public MutateIncomingTransportMessageBehavior(IEnumerable<IMutateIncomingTransportMessages> mutators)
     {
-        this.mutators = mutators;
+        this.mutators = mutators.ToArray();
     }
 
     public Task Invoke(IIncomingPhysicalMessageContext context, Func<IIncomingPhysicalMessageContext, Task> next)
@@ -61,5 +62,5 @@ class MutateIncomingTransportMessageBehavior : IBehavior<IIncomingPhysicalMessag
     }
 
     volatile bool hasIncomingTransportMessageMutators = true;
-    readonly HashSet<IMutateIncomingTransportMessages> mutators;
+    readonly IMutateIncomingTransportMessages[] mutators;
 }

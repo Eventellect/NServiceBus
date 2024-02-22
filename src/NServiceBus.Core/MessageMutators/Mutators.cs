@@ -1,7 +1,7 @@
 ﻿namespace NServiceBus.Features;
 
-using MessageMutator;
 using System.Collections.Generic;
+using MessageMutator;
 
 class Mutators : Feature
 {
@@ -22,9 +22,9 @@ class Mutators : Feature
 
     public class RegisteredMutators
     {
-        public readonly HashSet<IMutateIncomingMessages> IncomingMessage = [];
-        public readonly HashSet<IMutateOutgoingMessages> OutgoingMessage = [];
-        public readonly HashSet<IMutateIncomingTransportMessages> IncomingTransportMessage = [];
-        public readonly HashSet<IMutateOutgoingTransportMessages> OutgoingTransportMessage = [];
+        public readonly List<IMutateIncomingMessages> IncomingMessage = [];
+        public readonly List<IMutateOutgoingMessages> OutgoingMessage = [];
+        public readonly List<IMutateIncomingTransportMessages> IncomingTransportMessage = [];
+        public readonly List<IMutateOutgoingTransportMessages> OutgoingTransportMessage = [];
     }
 }

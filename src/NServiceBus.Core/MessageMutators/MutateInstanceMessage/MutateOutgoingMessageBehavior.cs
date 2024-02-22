@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using MessageMutator;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,9 +11,9 @@ using Transport;
 
 class MutateOutgoingMessageBehavior : IBehavior<IOutgoingLogicalMessageContext, IOutgoingLogicalMessageContext>
 {
-    public MutateOutgoingMessageBehavior(HashSet<IMutateOutgoingMessages> mutators)
+    public MutateOutgoingMessageBehavior(IEnumerable<IMutateOutgoingMessages> mutators)
     {
-        this.mutators = mutators;
+        this.mutators = mutators.ToArray();
     }
 
     public Task Invoke(IOutgoingLogicalMessageContext context, Func<IOutgoingLogicalMessageContext, Task> next)
@@ -68,5 +69,5 @@ class MutateOutgoingMessageBehavior : IBehavior<IOutgoingLogicalMessageContext, 
     }
 
     volatile bool hasOutgoingMessageMutators = true;
-    readonly HashSet<IMutateOutgoingMessages> mutators;
+    readonly IMutateOutgoingMessages[] mutators;
 }
