@@ -1358,7 +1358,9 @@ namespace NServiceBus.Serializers.XML.Test
 
     public class MessageWithDictionaryWithAnObjectAsKey
     {
+#pragma warning disable PS0025 // Dictionary keys should implement GetHashCode
         public Dictionary<object, string> Content { get; set; }
+#pragma warning restore PS0025 // Dictionary keys should implement GetHashCode
     }
 
     public class MessageWithDictionaryWithAnObjectAsValue

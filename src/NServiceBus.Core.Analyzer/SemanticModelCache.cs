@@ -6,7 +6,9 @@
     class SemanticModelCache
     {
         Compilation compilation;
+#pragma warning disable PS0025 // Dictionary keys should implement GetHashCode
         Dictionary<SyntaxTree, SemanticModel> dict;
+#pragma warning restore PS0025 // Dictionary keys should implement GetHashCode
 
         public SemanticModelCache(Compilation compilation, SyntaxTree originalSyntaxTree, SemanticModel originalSemanticModel)
         {
