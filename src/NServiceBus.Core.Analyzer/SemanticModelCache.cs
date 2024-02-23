@@ -6,9 +6,9 @@
     class SemanticModelCache
     {
         Compilation compilation;
-#pragma warning disable PS0025 // Dictionary keys should implement GetHashCode
+#pragma warning disable PS0025 // Dictionary keys should implement IEquatable<T>
         Dictionary<SyntaxTree, SemanticModel> dict;
-#pragma warning restore PS0025 // Dictionary keys should implement GetHashCode
+#pragma warning restore PS0025 // Dictionary keys should implement IEquatable<T>
 
         public SemanticModelCache(Compilation compilation, SyntaxTree originalSyntaxTree, SemanticModel originalSemanticModel)
         {

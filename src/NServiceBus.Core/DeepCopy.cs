@@ -14,7 +14,7 @@ namespace System
     using System.Collections.Generic;
     using System.Reflection;
 
-    [Diagnostics.CodeAnalysis.SuppressMessage("Code", "PS0025:Dictionary keys should not be reference types",
+    [Diagnostics.CodeAnalysis.SuppressMessage("Code", "PS0025:Dictionary keys should implement IEquatable<T>",
         Justification = "A DeepCopy algorithm requires reference counting necessitating dictionaries keyed on objects by reference")]
     static class ObjectExtensions
     {
