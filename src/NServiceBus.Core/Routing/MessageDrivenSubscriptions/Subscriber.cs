@@ -3,7 +3,7 @@ namespace NServiceBus.Unicast.Subscriptions.MessageDrivenSubscriptions;
 /// <summary>
 /// Represents a subscriber in message-driven subscriptions.
 /// </summary>
-public class Subscriber
+public record class Subscriber
 {
     /// <summary>
     /// Creates a new subscriber.
