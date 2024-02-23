@@ -20,11 +20,13 @@ class Mutators : Feature
         context.Pipeline.Register("MutateOutgoingTransportMessage", new MutateOutgoingTransportMessageBehavior(registry.OutgoingTransportMessage), "Executes IMutateOutgoingTransportMessages");
     }
 
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Code", "PS0025:Dictionary keys should implement IEquatable<T>",
+        Justification = "Tests depend on mutators not being registered multiple times based on reference equality")]
     public class RegisteredMutators
     {
-        public readonly List<IMutateIncomingMessages> IncomingMessage = [];
-        public readonly List<IMutateOutgoingMessages> OutgoingMessage = [];
-        public readonly List<IMutateIncomingTransportMessages> IncomingTransportMessage = [];
-        public readonly List<IMutateOutgoingTransportMessages> OutgoingTransportMessage = [];
+        public readonly HashSet<IMutateIncomingMessages> IncomingMessage = [];
+        public readonly HashSet<IMutateOutgoingMessages> OutgoingMessage = [];
+        public readonly HashSet<IMutateIncomingTransportMessages> IncomingTransportMessage = [];
+        public readonly HashSet<IMutateOutgoingTransportMessages> OutgoingTransportMessage = [];
     }
 }
